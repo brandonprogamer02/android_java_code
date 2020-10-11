@@ -7,12 +7,234 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/pantalla"
+        android:layout_width="408dp"
+        android:layout_height="152dp"
+
+        android:text="0"
+        android:textAlignment="textEnd"
+        android:textSize="110sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="154dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/boton7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickBoton7"
+                android:text="7"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/boton8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickBoton8"
+                android:text="8"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/boton9"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickBoton9"
+                android:text="9"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/botonMenos"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickBotonMenos"
+                android:text="-"
+                android:textSize="35sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/boton4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickBoton4"
+                android:text="4"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/boton5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickBoton5"
+                android:text="5"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/boton6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickBoton6"
+                android:text="6"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/botonDivision"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickBotonDivision"
+                android:text="/"
+                android:textSize="25sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/boton1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickBoton1"
+                android:text="1"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/boton2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickBoton2"
+                android:text="2"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/boton3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickBoton3"
+                android:text="3"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/botonMultiplicacion"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickBotonMultiplicacion"
+                android:text="*"
+                android:textSize="25sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/boton0"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickBoton0"
+                android:text="0"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/botonBorrar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickBotonBorrar"
+                android:text="Borrar"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/botonPunto"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickBotonPunto"
+                android:text="."
+                android:textSize="35sp" />
+
+            <Button
+                android:id="@+id/botonMas"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickBotonMas"
+                android:text="+"
+                android:textSize="25sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/botonIgual"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickBotonIgual"
+                android:text="="
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/botonBorrarTodo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickBotonBorrarTodo"
+                android:text="C"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/botonPi"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickBotonPi"
+                android:text="π"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/botonE"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickBotonE"
+                android:text="E"
+                android:textSize="25sp" />
+        </TableRow>
+    </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
