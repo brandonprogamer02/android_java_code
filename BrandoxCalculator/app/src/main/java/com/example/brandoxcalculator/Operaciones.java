@@ -8,8 +8,7 @@ public class Operaciones {
 
 
     public static void efectuarOperacion(String tipoOperacion){
-        double valorPantalla = MainActivity.getNumeroIntroducido();
-        TextView pantalla = MainActivity.getPantalla();
+        double valorPantalla = MainActivity.getCantidadIntroducida();
         TextView pantallaResultado = MainActivity.getPantallaResultado();
 
         switch (tipoOperacion){
@@ -18,9 +17,8 @@ public class Operaciones {
                 if( ! (boolean) valorA[1] ){
                     valorA[0] = valorPantalla;
                     valorA[1] = true;
-                    System.out.println("entro en que no hay valorA");
                 }else if( (boolean) valorA[1] ){ // encambio si tiene algun valor resolvemos
-                    System.out.println("entro en que si hay valorA !!!!!!");
+
                     double result = sumar(valorPantalla, (double) valorA[0]);
                     pantallaResultado.setText(String.valueOf(result));
                     valorA[0] = result;
