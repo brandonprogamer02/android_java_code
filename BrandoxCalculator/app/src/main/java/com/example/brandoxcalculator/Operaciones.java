@@ -8,9 +8,10 @@ public class Operaciones {
 
 
     public static void efectuarOperacion(String tipoOperacion){
-        double valorPantalla = Double.valueOf((String)MainActivity.getPantalla().getText());
+        double valorPantalla = MainActivity.getNumeroIntroducido();
         TextView pantalla = MainActivity.getPantalla();
-        pantalla.setText("");
+        TextView pantallaResultado = MainActivity.getPantallaResultado();
+
         switch (tipoOperacion){
             case "+":
                 // si valorA esta vacio(osea esta en false su segunda pos)le asignamos el valor
@@ -21,7 +22,7 @@ public class Operaciones {
                 }else if( (boolean) valorA[1] ){ // encambio si tiene algun valor resolvemos
                     System.out.println("entro en que si hay valorA !!!!!!");
                     double result = sumar(valorPantalla, (double) valorA[0]);
-                    pantalla.setText(String.valueOf(result));
+                    pantallaResultado.setText(String.valueOf(result));
                     valorA[0] = result;
 
                 }
@@ -86,6 +87,7 @@ public class Operaciones {
     // segunda posicion es si tiene algun valor o no. ya que no se puede validar si esta
     // vacio o no con numeros ya que esta variable contiene todo tipo de numeros
     private static Object[] valorA = {0,false};
+
 
     private static boolean operationProcess;
 }
