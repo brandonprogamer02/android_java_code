@@ -1,11 +1,13 @@
 package com.example.brandoxcalculator;
-
+// ME QUEDA ADAPTANDO LAS OPERACIONES PARA QUENO SOLO SEA LA SUMA Y TAMBIEN PONIENDO EL BOTON DE IGUAL
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,47 +39,47 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickBoton4(View view) {
-        pantalla.setText("4");
+        pintarTextoPantalla("4");
 
     }
 
     public void onClickBoton5(View view) {
-        pantalla.setText("5");
+        pintarTextoPantalla("5");
 
     }
 
     public void onClickBoton6(View view) {
-        pantalla.setText("6");
+        pintarTextoPantalla("6");
 
     }
 
     public void onClickBoton7(View view) {
-        pantalla.setText("7");
+        pintarTextoPantalla("8");
 
     }
 
     public void onClickBoton8(View view) {
-        pantalla.setText("8");
+        pintarTextoPantalla("8");
 
     }
 
     public void onClickBoton9(View view) {
-        pantalla.setText("9");
+        pintarTextoPantalla("9");
 
     }
 
     public void onClickBoton0(View view) {
-        pantalla.setText("0");
+        pintarTextoPantalla("0");
 
     }
 
     public void onClickBotonMas(View view) {
         // le mandamos el contexto por parametro
-        validarClickOperacion("+",getApplicationContext());
-
+        validarClickOperacion("+", getApplicationContext());
 
     }
-    public static void validarClickOperacion(String tipoOperacion, Context context){
+
+    public static void validarClickOperacion(String tipoOperacion, Context context) {
         System.out.println("se le dio click al boton mas");
         // obtenemos la ultima letra del texto introducido
         String ultimo = String.valueOf(textointroducido.charAt(textointroducido.length() - 1));
@@ -87,8 +89,10 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(context, "DEBES COLOCAR UNA CANTIDAD NUMERICA", Toast.LENGTH_SHORT).show();
         } else {
             Operaciones.setSelectedOperation(tipoOperacion);
-            getCantidadIntroducida();
+//           getCantidadIntroducida();
             pintarTextoPantalla(tipoOperacion);
+            Operaciones.efectuarOperacion(tipoOperacion, context);
+
         }
 
     }
@@ -96,34 +100,33 @@ public class MainActivity extends AppCompatActivity {
     public static double getCantidadIntroducida() {
         double value = 0;
         String texto = textointroducido;
-        System.out.println("EL TEXTO TIENE ESTE FLOW:" + texto);
-        if (texto.contains("+") || texto.contains("-") || texto.contains("*") || texto.contains("/")) {
+
+        if (texto.contains("+") || texto.contains("-") || texto.contains("*") || texto.contains("/") || texto.contentEquals("=")) {
             // se obtiene una lista con las posiciones del simbolo de operacion que actualmente esta en uso
             List<Integer> ocurrencias = getPosOcurrencias(texto, Operaciones.getSelectedOperation());
             // si es la primera operacion en curso entonces se coje toda la expresion eliminando la ultima que es el simbolo
             if (ocurrencias.size() == 1) {
-                System.out.println("la real es que: " + (texto.length() - 1));
+                // si solo ahi un signo aplicamos este algoritmo para hallar el valor introducido
+                texto = texto.substring(0, texto.length() - 1);
+                value = Double.valueOf(texto);
 
             } else if (ocurrencias.size() > 1) {
                 // en caso contrario de que hallan 2 o mas operaciones entonces se apica este algoritmo
                 // .subtring(desde la ultima ocurrencia de un simbolo operacional hasta el final del string)
-                int desde = ocurrencias.get(ocurrencias.size() - 1) + 1;
-                System.out.println("RECORRIENDO LAS OCURRENCIAS AVER KLK");
-                for (int f : ocurrencias) {
-                    System.out.println(f);
-                }
+                int desde = ocurrencias.get(ocurrencias.size() - 2) + 1;
+//                System.out.println("RECORRIENDO LAS OCURRENCIAS AVER KLK");
+//                for (int f : ocurrencias) {
+//                    System.out.println(f);
+//                }
 
-                int hasta = texto.length();
+                int hasta = texto.length() - 1;
                 System.out.println(String.format("DESDE: %s, HASTA: %S", desde, hasta));
                 String real = texto.substring(desde, hasta);
                 // en ocurrencias.size() -2 se le resta dos para elegir la penultima ocurrencia
                 // en el primer parametro de la linea anterior se le suma uno para no incluir el simbolo operacional
-
                 value = Double.valueOf(real);
             }
 
-        } else {
-            value = Double.valueOf(texto);
         }
         System.out.println("LA CANTIDAD ES: " + value);
         return value;
@@ -145,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private static List<Integer> getPosOcurrencias(String cadena, String substr) {
+    public static List<Integer> getPosOcurrencias(String cadena, String substr) {
         String str = cadena;
         String findStr = substr;
         int lastIndex = 0;
@@ -167,15 +170,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onClickBotonMenos(View view) {
-
+        validarClickOperacion("-", getApplicationContext());
     }
 
     public void onClickBotonDivision(View view) {
-
+        validarClickOperacion("/", getApplicationContext());
     }
 
     public void onClickBotonMultiplicacion(View view) {
-
+        validarClickOperacion("*", getApplicationContext());
     }
 
     public void onClickBotonBorrar(View view) {
@@ -191,6 +194,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickBotonIgual(View view) {
+
+        int ocurrencias =
+                getPosOcurrencias(textointroducido, "+").size() + getPosOcurrencias(textointroducido, "-").size() +
+                        getPosOcurrencias(textointroducido, "*").size() + getPosOcurrencias(textointroducido, "/").size();
+
+        if (ocurrencias == 0) { // no nay ninguna operacion activa
+            Toast.makeText(this, "no hay ninguna operacion o cantidad", Toast.LENGTH_SHORT).show();
+
+
+        }else if(ocurrencias == 1){
+            List<Integer> lista = getPosOcurrencias(textointroducido,"-");
+//            String valorA = textointroducido.substring(0,);
+
+        }else {
+            String operacionEncurso = Operaciones.getSelectedOperation();
+            switch (operacionEncurso) {
+                case "+":
+
+                    List<Integer> ocurrencia = getPosOcurrencias(textointroducido, "+");
+
+                    int posUltimoSignoMas = ocurrencia.get(ocurrencia.size() - 1);
+                    int antePenultimaPosicoin = ocurrencia.get(ocurrencia.size() - 2);
+                    String valorA = textointroducido.substring(antePenultimaPosicoin + 1, posUltimoSignoMas + 1);
+                    String valorB = textointroducido.substring(posUltimoSignoMas + 1, textointroducido.length() - 1);
+                    double res = Operaciones.sumar(Double.valueOf(valorA), Double.valueOf(valorB));
+                    System.out.println("EN RESULTADO LA SUMA ES: " + res);
+                    break;
+            }
+
+        }
 
     }
 
@@ -213,5 +246,6 @@ public class MainActivity extends AppCompatActivity {
     private static TextView pantalla;
     private static TextView pantallaResultado;
     private static String textointroducido = "";
+
 
 }
