@@ -1,5 +1,6 @@
 package com.example.brandoxcalculator;
-// ME QUEDA ADAPTANDO LAS OPERACIONES PARA QUENO SOLO SEA LA SUMA Y TAMBIEN PONIENDO EL BOTON DE IGUAL
+// me quede modificando el metodo Operaciones.getSelectedOperaction();
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.nio.DoubleBuffer;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("============================================================================================");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         pantalla = findViewById(R.id.pantalla);
@@ -80,57 +84,66 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void validarClickOperacion(String tipoOperacion, Context context) {
-        System.out.println("se le dio click al boton mas");
         // obtenemos la ultima letra del texto introducido
-        String ultimo = String.valueOf(textointroducido.charAt(textointroducido.length() - 1));
-        // validacion para que no se pueda poner un simbolo operacional seguido de otro
-        if (ultimo.equals(tipoOperacion)) {
-            // recibimos el contexto del activity por parametro
-            Toast.makeText(context, "DEBES COLOCAR UNA CANTIDAD NUMERICA", Toast.LENGTH_SHORT).show();
-        } else {
-            Operaciones.setSelectedOperation(tipoOperacion);
-//           getCantidadIntroducida();
-            pintarTextoPantalla(tipoOperacion);
-            Operaciones.efectuarOperacion(tipoOperacion, context);
-
+        // validacion para que no se pueda poner un simbolo operacional seguido de otrot
+        String ultimo;
+        try {
+            ultimo = String.valueOf(textointroducido.charAt(textointroducido.length() - 1));
+        }catch (IndexOutOfBoundsException e){
+            // con esto se valida que el primer caracter introducido no sea una simbolo operacional
+            Toast.makeText(context, "DEBES INTRODUCIR UNA CANTIDAD NUMERICA", Toast.LENGTH_SHORT).show();
+            return;
         }
 
+        if(ultimo.equals("+") || ultimo.equals("-") || ultimo.equals("*") || ultimo.equals("/")  ){
+            Toast.makeText(context, "DEBES PONER UNA CANTIDAD NUMERICA", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        pintarTextoPantalla(tipoOperacion);
+        Operaciones.setSelectedOperation(tipoOperacion);
+        Operaciones.efectuarOperacion(tipoOperacion, context);
     }
 
-    public static double getCantidadIntroducida() {
-        double value = 0;
-        String texto = textointroducido;
+    private static String reverse(String s) {
+        if (s.length() <= 1) // este metodo te devuelve el reverso de un String
+        {
+            return s;
+        }
+        return reverse(s.substring(1, s.length())) + s.charAt(0);
+    }
 
-        if (texto.contains("+") || texto.contains("-") || texto.contains("*") || texto.contains("/") || texto.contentEquals("=")) {
-            // se obtiene una lista con las posiciones del simbolo de operacion que actualmente esta en uso
-            List<Integer> ocurrencias = getPosOcurrencias(texto, Operaciones.getSelectedOperation());
-            // si es la primera operacion en curso entonces se coje toda la expresion eliminando la ultima que es el simbolo
-            if (ocurrencias.size() == 1) {
-                // si solo ahi un signo aplicamos este algoritmo para hallar el valor introducido
-                texto = texto.substring(0, texto.length() - 1);
-                value = Double.valueOf(texto);
+    public static Double getValorIntroducido() {
+        String input = textointroducido;
+        String lastChar = String.valueOf(textointroducido.charAt(textointroducido.length() - 1));
+        // este metodo te devuelve el ultimo valor introducido
+        // el recorre el string desde el final hasta el principio y va agregando cada caracter a otro string
+        // que es el que se retornara, si se topa con un caracter operacional entoces se sale del bucle y retorna
+        String resultado = "";
 
-            } else if (ocurrencias.size() > 1) {
-                // en caso contrario de que hallan 2 o mas operaciones entonces se apica este algoritmo
-                // .subtring(desde la ultima ocurrencia de un simbolo operacional hasta el final del string)
-                int desde = ocurrencias.get(ocurrencias.size() - 2) + 1;
-//                System.out.println("RECORRIENDO LAS OCURRENCIAS AVER KLK");
-//                for (int f : ocurrencias) {
-//                    System.out.println(f);
-//                }
-
-                int hasta = texto.length() - 1;
-                System.out.println(String.format("DESDE: %s, HASTA: %S", desde, hasta));
-                String real = texto.substring(desde, hasta);
-                // en ocurrencias.size() -2 se le resta dos para elegir la penultima ocurrencia
-                // en el primer parametro de la linea anterior se le suma uno para no incluir el simbolo operacional
-                value = Double.valueOf(real);
+        for (int i = input.length() - 1; i >= 0; i--) {
+            System.out.println("mera cabra");
+            String caracter = String.valueOf(input.charAt(i));
+            if (caracter.equals(lastChar) && i == input.length() - 1) {
+                System.out.println("ENTRO IF ");
+                // la primera posicion siempre tendra el simbolo de la operacion actual, por eso lo ignoramos
+                continue;
+            } else if (caracter.equals("-") || caracter.equals("+")
+                    || caracter.equals("*") || caracter.equals("/")) {
+                System.out.println("ENTRO ELSE IF");
+                // si te topas con otro signo operacional sal del bucle
+                break;
+            } else {
+                System.out.println("entro en else bro");
+                // en caso contrario agrega el caracter actual a la pila
+                resultado = resultado + caracter;
             }
 
         }
-        System.out.println("LA CANTIDAD ES: " + value);
-        return value;
+
+        System.out.println("el resultado " + reverse(resultado));
+        return Double.valueOf(reverse(resultado));
     }
+
 
     private static void pintarTextoPantalla(String substr) {
         textointroducido += substr;
@@ -190,6 +203,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickBotonBorrarTodo(View view) {
+        pantallaResultado.setText("");
+        pantallaResultado.setText("");
+        textointroducido = "";
 
     }
 
@@ -203,11 +219,11 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "no hay ninguna operacion o cantidad", Toast.LENGTH_SHORT).show();
 
 
-        }else if(ocurrencias == 1){
-            List<Integer> lista = getPosOcurrencias(textointroducido,"-");
+        } else if (ocurrencias == 1) {
+            List<Integer> lista = getPosOcurrencias(textointroducido, "-");
 //            String valorA = textointroducido.substring(0,);
 
-        }else {
+        } else {
             String operacionEncurso = Operaciones.getSelectedOperation();
             switch (operacionEncurso) {
                 case "+":
@@ -245,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static TextView pantalla;
     private static TextView pantallaResultado;
-    private static String textointroducido = "";
+    public static String textointroducido = "";
 
 
 }
