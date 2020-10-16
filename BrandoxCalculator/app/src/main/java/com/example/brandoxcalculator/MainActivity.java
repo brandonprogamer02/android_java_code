@@ -1,5 +1,4 @@
 package com.example.brandoxcalculator;
-// me quede modificando el metodo Operaciones.getSelectedOperaction();
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -89,13 +88,13 @@ public class MainActivity extends AppCompatActivity {
         String ultimo;
         try {
             ultimo = String.valueOf(textointroducido.charAt(textointroducido.length() - 1));
-        }catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             // con esto se valida que el primer caracter introducido no sea una simbolo operacional
             Toast.makeText(context, "DEBES INTRODUCIR UNA CANTIDAD NUMERICA", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if(ultimo.equals("+") || ultimo.equals("-") || ultimo.equals("*") || ultimo.equals("/")  ){
+        if (ultimo.equals("+") || ultimo.equals("-") || ultimo.equals("*") || ultimo.equals("/")) {
             Toast.makeText(context, "DEBES PONER UNA CANTIDAD NUMERICA", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -113,34 +112,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static Double getValorIntroducido() {
+
         String input = textointroducido;
         String lastChar = String.valueOf(textointroducido.charAt(textointroducido.length() - 1));
         // este metodo te devuelve el ultimo valor introducido
         // el recorre el string desde el final hasta el principio y va agregando cada caracter a otro string
         // que es el que se retornara, si se topa con un caracter operacional entoces se sale del bucle y retorna
         String resultado = "";
-
         for (int i = input.length() - 1; i >= 0; i--) {
-            System.out.println("mera cabra");
             String caracter = String.valueOf(input.charAt(i));
             if (caracter.equals(lastChar) && i == input.length() - 1) {
-                System.out.println("ENTRO IF ");
                 // la primera posicion siempre tendra el simbolo de la operacion actual, por eso lo ignoramos
                 continue;
             } else if (caracter.equals("-") || caracter.equals("+")
                     || caracter.equals("*") || caracter.equals("/")) {
-                System.out.println("ENTRO ELSE IF");
                 // si te topas con otro signo operacional sal del bucle
                 break;
             } else {
-                System.out.println("entro en else bro");
                 // en caso contrario agrega el caracter actual a la pila
                 resultado = resultado + caracter;
             }
 
         }
 
-        System.out.println("el resultado " + reverse(resultado));
         return Double.valueOf(reverse(resultado));
     }
 
@@ -181,7 +175,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     public void onClickBotonMenos(View view) {
         validarClickOperacion("-", getApplicationContext());
     }
@@ -195,60 +188,41 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickBotonBorrar(View view) {
-
-    }
-
-    public void onClickBotonPunto(View view) {
-
-    }
-
-    public void onClickBotonBorrarTodo(View view) {
-        pantallaResultado.setText("");
-        pantallaResultado.setText("");
-        textointroducido = "";
-
-    }
-
-    public void onClickBotonIgual(View view) {
-
-        int ocurrencias =
-                getPosOcurrencias(textointroducido, "+").size() + getPosOcurrencias(textointroducido, "-").size() +
-                        getPosOcurrencias(textointroducido, "*").size() + getPosOcurrencias(textointroducido, "/").size();
-
-        if (ocurrencias == 0) { // no nay ninguna operacion activa
-            Toast.makeText(this, "no hay ninguna operacion o cantidad", Toast.LENGTH_SHORT).show();
-
-
-        } else if (ocurrencias == 1) {
-            List<Integer> lista = getPosOcurrencias(textointroducido, "-");
-//            String valorA = textointroducido.substring(0,);
-
-        } else {
-            String operacionEncurso = Operaciones.getSelectedOperation();
-            switch (operacionEncurso) {
-                case "+":
-
-                    List<Integer> ocurrencia = getPosOcurrencias(textointroducido, "+");
-
-                    int posUltimoSignoMas = ocurrencia.get(ocurrencia.size() - 1);
-                    int antePenultimaPosicoin = ocurrencia.get(ocurrencia.size() - 2);
-                    String valorA = textointroducido.substring(antePenultimaPosicoin + 1, posUltimoSignoMas + 1);
-                    String valorB = textointroducido.substring(posUltimoSignoMas + 1, textointroducido.length() - 1);
-                    double res = Operaciones.sumar(Double.valueOf(valorA), Double.valueOf(valorB));
-                    System.out.println("EN RESULTADO LA SUMA ES: " + res);
-                    break;
-            }
-
+        // validamos para que al pulsar borrar el texto sea un caracter numerico
+        String lastChar = String.valueOf(textointroducido.charAt(textointroducido.length() - 1));
+        if (!lastChar.equals("+") && !lastChar.equals("-") && !lastChar.equals("*") && !lastChar.equals("/")) {
+            // borramos el ultimo caracter que tenemos en el textoIntroducido en memeoria ram
+            textointroducido = textointroducido.substring(0, textointroducido.length() - 1);
+            // lo remplazamos en pantalla
+            pantalla.setText(textointroducido);
         }
 
     }
 
-    public void onClickBotonPi(View view) {
+    public void onClickBotonPunto(View view) {
+        pintarTextoPantalla(".");
+    }
 
+    public void onClickBotonBorrarTodo(View view) {
+        // borramos lo que hay en la pantalla de operaciones, pantalla de resultados, en el texto introducido
+        // virtual, en las operacion anterior , y en el valor anterior en memoria
+        pantalla.setText("");
+        pantallaResultado.setText("");
+        textointroducido = "";
+        Operaciones.operacionAnt = null;
+        Operaciones.valorA = new Object[]{0, false};
+    }
+
+    public void onClickBotonIgual(View view) {
+        Operaciones.efectuarOperacion("=", getApplicationContext());
+    }
+
+    public void onClickBotonPi(View view) {
+        pintarTextoPantalla("3.1415");
     }
 
     public void onClickBotonE(View view) {
-
+        pintarTextoPantalla("2.7182");
     }
 
     public static TextView getPantalla() {
@@ -262,6 +236,4 @@ public class MainActivity extends AppCompatActivity {
     private static TextView pantalla;
     private static TextView pantallaResultado;
     public static String textointroducido = "";
-
-
 }

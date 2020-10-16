@@ -1,5 +1,4 @@
 package com.example.brandoxcalculator;
-// me quede bregando para que se elija la operacion anterior
 
 import android.content.Context;
 import android.widget.TextView;
@@ -12,86 +11,119 @@ import java.util.List;
 public class Operaciones {
 
     public static void efectuarOperacion(String tipoOperacion, Context context) {
-        double valorPantalla = MainActivity.getValorIntroducido();
         TextView pantallaResultado = MainActivity.getPantallaResultado();
-        if( operacionAnt == null){
+        System.out.println("valorA[0] comienzo:" + valorA[0]);
+        // entramos a la de igual
+        if (tipoOperacion.equals("=")) {
+            // le agregamos un valor cualquiera a lo ultimo(porque asi es que funciona el algoritmo de getValorIntroducido())
+            // buscamos de nuevo el valorIntroducido(); y luego le quitamos el valor que le agregamos para dejarlo virgen
+            MainActivity.textointroducido += "+";
+            double valorPantalla = MainActivity.getValorIntroducido();
+            MainActivity.textointroducido = MainActivity.textointroducido.substring(0, MainActivity.textointroducido.length() - 1);
+            // si valorA esta vacio(osea esta en false su segunda pos)le asignamos el valor
+            // encambio si tiene algun valor resolvemos
+            System.out.println("ESTE ES EL VALOR EN PANTALLA:" + valorPantalla + ", este es el  valorA[0]:" + valorA[0]);
+            double result = 0;
+            switch (operacionAnt) {
+                case "+":
+                    result = sumar((double) valorA[0], valorPantalla);
+                    break;
+                case "-":
+                    result = restar((double) valorA[0], valorPantalla);
+                    break;
+                case "*":
+                    result = multiplicar((double) valorA[0], valorPantalla);
+                    break;
+                case "/":
+                    result = dividir((double) valorA[0], valorPantalla);
+                    break;
+            }
+            valorA[0] = result;
+            valorA[1] = false;
+            MainActivity.textointroducido = String.valueOf(result);
+            pantallaResultado.setText(String.valueOf(result));
+            return;
+        } else {
+            if (operacionAnt == null) {
+                // esto se hace con el fin de que se efectue la operacion anterior a la que se esta presionando en boton
+                // si la operacion anterior es null entonces la operacion anterir es igual a la que se presiono (esto se hace cuando es la primera operacion)
+                operacionAnt = tipoOperacion;
+            }
+
+            double valorPantalla = MainActivity.getValorIntroducido();
+            switch (operacionAnt) {
+
+                case "+":
+                    // si valorA esta vacio(osea esta en false su segunda pos)le asignamos el valor
+                    if (!(boolean) valorA[1]) {
+                        valorA[0] = valorPantalla;
+                        valorA[1] = true;
+                    } else if ((boolean) valorA[1]) { // encambio si tiene algun valor resolvemos
+                        double result = sumar(valorPantalla, (double) valorA[0]);
+                        valorA[0] = result;
+                        pantallaResultado.setText(String.valueOf(result));
+                    }
+                    setSelectedOperation("+");
+
+                    break;
+
+                case "*":
+                    // si valorA esta vacio(osea esta en false su segunda pos)le asignamos el valor
+                    if (!(boolean) valorA[1]) {
+                        valorA[0] = valorPantalla;
+                        valorA[1] = true;
+
+                    } else if ((boolean) valorA[1]) { // encambio si tiene algun valor resolvemos
+
+                        double result = multiplicar(valorPantalla, (double) valorA[0]);
+                        valorA[0] = result;
+                        pantallaResultado.setText(String.valueOf(result));
+                    }
+                    setSelectedOperation("*");
+                    break;
+
+                case "/":
+                    // si valorA esta vacio(osea esta en false su segunda pos)le asignamos el valor
+                    if (!(boolean) valorA[1]) {
+                        valorA[0] = valorPantalla;
+                        valorA[1] = true;
+                    } else if ((boolean) valorA[1]) { // encambio si tiene algun valor resolvemos
+
+                        double result = dividir((double) valorA[0], valorPantalla);
+                        valorA[0] = result;
+                        pantallaResultado.setText(String.valueOf(result));
+                    }
+                    setSelectedOperation("/");
+
+
+                    break;
+
+                case "-":
+                    // si valorA esta vacio(osea esta en false su segunda pos)le asignamos el valor
+                    if (!(boolean) valorA[1]) {
+                        valorA[0] = valorPantalla;
+                        valorA[1] = true;
+                    } else if ((boolean) valorA[1]) { // encambio si tiene algun valor resolvemos
+
+                        double result = restar((double) valorA[0], valorPantalla);
+                        valorA[0] = result;
+                        pantallaResultado.setText(String.valueOf(result));
+                    }
+                    setSelectedOperation("-");
+
+                    break;
+            }
+
+            System.out.println("valorA[0] final:" + valorA[0]);
             operacionAnt = tipoOperacion;
+
+
         }
-        switch (operacionAnt) {
-            case "+":
-                // si valorA esta vacio(osea esta en false su segunda pos)le asignamos el valor
-                if (!(boolean) valorA[1]) {
-                    valorA[0] = valorPantalla;
-                    valorA[1] = true;
-                } else if ((boolean) valorA[1]) { // encambio si tiene algun valor resolvemos
-
-                    double result = sumar(valorPantalla,(double) valorA[0]);
-                    valorA[0] = result;
-                    pantallaResultado.setText(String.valueOf(result));
-                }
-                setSelectedOperation("+");
-
-                break;
-
-            case "*":
-                // si valorA esta vacio(osea esta en false su segunda pos)le asignamos el valor
-                if (!(boolean) valorA[1]) {
-                    valorA[0] = valorPantalla;
-                    valorA[1] = true;
-
-                } else if ((boolean) valorA[1]) { // encambio si tiene algun valor resolvemos
-
-                    double result = multiplicar(valorPantalla, (double) valorA[0]);
-                    valorA[0] = result;
-                    pantallaResultado.setText(String.valueOf(result));
-                }
-                setSelectedOperation("*");
-
-                break;
-
-            case "/":
-                // si valorA esta vacio(osea esta en false su segunda pos)le asignamos el valor
-                if (!(boolean) valorA[1]) {
-                    valorA[0] = valorPantalla;
-                    valorA[1] = true;
-                } else if ((boolean) valorA[1]) { // encambio si tiene algun valor resolvemos
-
-                    double result = dividir((double) valorA[0],valorPantalla);
-                    valorA[0] = result;
-                    pantallaResultado.setText(String.valueOf(result));
-                }
-                setSelectedOperation("/");
 
 
-                break;
-
-            case "-":
-                // si valorA esta vacio(osea esta en false su segunda pos)le asignamos el valor
-                if (!(boolean) valorA[1]) {
-                    valorA[0] = valorPantalla;
-                    valorA[1] = true;
-                } else if ((boolean) valorA[1]) { // encambio si tiene algun valor resolvemos
-
-                    double result = restar((double) valorA[0],valorPantalla);
-                    valorA[0] = result;
-                    pantallaResultado.setText(String.valueOf(result));
-                }
-                setSelectedOperation("-");
-
-                break;
-            case "=":
-
-                break;
-        }
-        operacionAnt = tipoOperacion;
     }
 
     public static void setSelectedOperation(String value) {
-
-        // verificamos si hay una operacion activa -> en caso de true le damos a evaluar esa operacion
-        // en caso se que no haya operacion activa entonces le damos la que nos da por parametro
-
-        // esto se hace con el fin de que coja siempre la operacion anterior a la que se presiona
 
         String valueFicticio = value;
         isSuma = false;
@@ -113,8 +145,6 @@ public class Operaciones {
                 isResta = true;
                 break;
         }
-
-
     }
 
     public static String getSelectedOperation() {
@@ -154,9 +184,7 @@ public class Operaciones {
     // segunda posicion es si tiene algun valor o no. ya que no se puede validar si esta
     // vacio o no con numeros ya que esta variable contiene todo tipo de numeros
 
-    private static String operacionAnt;
-    private static String operacionAct;
+    public static String operacionAnt;
+    public static Object[] valorA = {0, false};
 
-    private static Object[] valorA = {0, false};
-    private static boolean operationProcess;
 }
