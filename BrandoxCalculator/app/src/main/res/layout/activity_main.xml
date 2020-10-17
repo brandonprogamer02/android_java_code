@@ -51,6 +51,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:onClick="onClickBoton7"
+                android:shadowColor="#FD7A7A"
                 android:text="7"
                 android:textSize="25sp" />
 
@@ -238,6 +239,7 @@
                 android:layout_weight="1"
                 android:onClick="onClickBotonPi"
                 android:text="π"
+                android:textColorHighlight="#FFFFFF"
                 android:textSize="25sp" />
 
             <Button
