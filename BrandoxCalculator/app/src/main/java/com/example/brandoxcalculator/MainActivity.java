@@ -1,5 +1,5 @@
 package com.example.brandoxcalculator;
-
+// esto es good quality
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.nio.DoubleBuffer;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +21,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         pantalla = findViewById(R.id.pantalla);
         pantallaResultado = findViewById(R.id.pantallaResultado);
+        System.out.println("mere cabron");
     }
 
     public void onClickBoton1(View view) {
-
         pintarTextoPantalla("1");
     }
 
@@ -94,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        if (ultimo.equals("+") || ultimo.equals("-") || ultimo.equals("*") || ultimo.equals("/")) {
+        if (ultimo.equals("+") || ultimo.equals("-") || ultimo.equals("*") || ultimo.equals("/")  ){
             Toast.makeText(context, "DEBES PONER UNA CANTIDAD NUMERICA", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -112,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static Double getValorIntroducido() {
-
         String input = textointroducido;
         String lastChar = String.valueOf(textointroducido.charAt(textointroducido.length() - 1));
         // este metodo te devuelve el ultimo valor introducido
@@ -140,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static void pintarTextoPantalla(String substr) {
+        // al historial de operaciones y numeros le anadimos este nuevo caracter
         textointroducido += substr;
         String texto = textointroducido;
         // el limite de caracteres en pantalla es de 11
@@ -188,8 +186,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickBotonBorrar(View view) {
+        // validamos que halla un caracter
+        if(textointroducido.length() == 0){
+            return;
+        }
         // validamos para que al pulsar borrar el texto sea un caracter numerico
         String lastChar = String.valueOf(textointroducido.charAt(textointroducido.length() - 1));
+
         if (!lastChar.equals("+") && !lastChar.equals("-") && !lastChar.equals("*") && !lastChar.equals("/")) {
             // borramos el ultimo caracter que tenemos en el textoIntroducido en memeoria ram
             textointroducido = textointroducido.substring(0, textointroducido.length() - 1);
@@ -210,11 +213,34 @@ public class MainActivity extends AppCompatActivity {
         pantallaResultado.setText("");
         textointroducido = "";
         Operaciones.operacionAnt = null;
-        Operaciones.valorA = new Object[]{0, false};
+        Operaciones.resultadoMemoriaRam = new Object[]{0, false};
     }
 
     public void onClickBotonIgual(View view) {
+
+        if(textointroducido.length() == 0){
+            // validamos que halla algo
+            Toast.makeText(this, "DEBES INTROUDCIR UNA EXPRESION OPERACIONAL", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        char lastChar = textointroducido.charAt(textointroducido.length() -1);
+
+        int totalOcurrencias = getPosOcurrencias(textointroducido,"+").size() + getPosOcurrencias(textointroducido,"-").size() +
+                getPosOcurrencias(textointroducido,"/").size() + getPosOcurrencias(textointroducido,"*").size();
+
+        if(totalOcurrencias == 0){
+            // validamos que halla signo
+            Toast.makeText(this, "DEBES INTROUDCIR UNA EXPRESION OPERACIONAL", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(lastChar == '/' || lastChar == '-' ||lastChar == '+' ||lastChar == '*' ){
+            // validamos que la ultima no sea un simbolo de operacion
+            Toast.makeText(this, "DEBES INTROUDCIR UNA EXPRESION OPERACIONAL", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Operaciones.efectuarOperacion("=", getApplicationContext());
+
     }
 
     public void onClickBotonPi(View view) {
