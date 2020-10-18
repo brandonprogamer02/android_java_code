@@ -6,12 +6,14 @@ import android.widget.TextView;
 public class Operaciones {
     public static void efectuarOperacion(String tipoOperacion, Context context) {
         TextView pantallaResultado = MainActivity.getPantallaResultado();
-        System.out.println("valorA[0] comienzo:" + resultadoMemoriaRam[0]);
+        System.out.println("salidoIgual:" + salidoIgual + "tipoOPeracion:" + tipoOperacion);
         // entramos a la de igual
-        if(salidoIgual){
+        if (salidoIgual) {
             // esta variable salidoIgual es para que despues de que se le de al igual y se le de a un boton de
             // operacion no la haga la operacion
+            System.out.println("vaya esta entrando");
             salidoIgual = false;
+            operacionAnt = tipoOperacion;
             return;
         }
         if (tipoOperacion.equals("=")) {
@@ -25,15 +27,19 @@ public class Operaciones {
             // determinamos que operacion es que se va a hacer
             switch (operacionAnt) {
                 case "+":
+                    System.out.println("entro en sumar result");
                     result = sumar((double) resultadoMemoriaRam[0], valorPantalla);
                     break;
                 case "-":
+                    System.out.println("entro en restar result: ja:" + resultadoMemoriaRam[0]);
                     result = restar((double) resultadoMemoriaRam[0], valorPantalla);
                     break;
                 case "*":
+                    System.out.println("entro en multiplicar result");
                     result = multiplicar((double) resultadoMemoriaRam[0], valorPantalla);
                     break;
                 case "/":
+                    System.out.println("entro en dividir result");
                     result = dividir((double) resultadoMemoriaRam[0], valorPantalla);
                     break;
             }
@@ -54,6 +60,7 @@ public class Operaciones {
             double valorPantalla = MainActivity.getValorIntroducido();
             switch (operacionAnt) {
                 case "+":
+                    System.out.println("entro en sumar ");
                     // si valorA esta vacio(osea esta en false su segunda pos)le asignamos el valor
                     if (!(boolean) resultadoMemoriaRam[1]) {
                         resultadoMemoriaRam[0] = valorPantalla;
@@ -63,10 +70,11 @@ public class Operaciones {
                         resultadoMemoriaRam[0] = result;
                         pantallaResultado.setText(String.valueOf(result));
                     }
-                    setSelectedOperation("+");
+
                     break;
 
                 case "*":
+                    System.out.println("entro en multiplicar");
                     // si valorA esta vacio(osea esta en false su segunda pos)le asignamos el valor
                     if (!(boolean) resultadoMemoriaRam[1]) {
                         resultadoMemoriaRam[0] = valorPantalla;
@@ -78,10 +86,11 @@ public class Operaciones {
                         resultadoMemoriaRam[0] = result;
                         pantallaResultado.setText(String.valueOf(result));
                     }
-                    setSelectedOperation("*");
+
                     break;
 
                 case "/":
+                    System.out.println("entro en dividir");
                     // si valorA esta vacio(osea esta en false su segunda pos)le asignamos el valor
                     if (!(boolean) resultadoMemoriaRam[1]) {
                         resultadoMemoriaRam[0] = valorPantalla;
@@ -92,12 +101,11 @@ public class Operaciones {
                         resultadoMemoriaRam[0] = result;
                         pantallaResultado.setText(String.valueOf(result));
                     }
-                    setSelectedOperation("/");
-
 
                     break;
 
                 case "-":
+                    System.out.println("entro en restar");
                     // si valorA esta vacio(osea esta en false su segunda pos)le asignamos el valor
                     if (!(boolean) resultadoMemoriaRam[1]) {
                         resultadoMemoriaRam[0] = valorPantalla;
@@ -105,42 +113,19 @@ public class Operaciones {
                     } else if ((boolean) resultadoMemoriaRam[1]) { // encambio si tiene algun valor resolvemos
 
                         double result = restar((double) resultadoMemoriaRam[0], valorPantalla);
+                        System.out.println("el resultado es:" + result);
                         resultadoMemoriaRam[0] = result;
                         pantallaResultado.setText(String.valueOf(result));
                     }
-                    setSelectedOperation("-");
+
 
                     break;
             }
 
-            System.out.println("valorA[0] final:" + resultadoMemoriaRam[0]);
             operacionAnt = tipoOperacion;
 
 
         }
-
-
-    }
-    public static void setSelectedOperation(String value) {
-        String valueFicticio = value;
-        isSuma = false;
-        isResta = false;
-        isMultiplicacion = false;
-        isDivision = false;
-        switch (valueFicticio) {
-            case "+": isSuma = true; break;
-            case "*": isMultiplicacion = true; break;
-            case "/": isDivision = true; break;
-            case "-":isResta = true; break;
-        }
-    }
-
-    public static String getSelectedOperation() {
-        if (isResta) return "-";
-        else if (isSuma) return "+";
-        else if (isMultiplicacion) return "*";
-        else if (isDivision) return "/";
-        else return null;
     }
 
     private Operaciones() {
@@ -163,10 +148,6 @@ public class Operaciones {
         return a / b;
     }
 
-    private static boolean isSuma = false;
-    private static boolean isResta = false;
-    private static boolean isMultiplicacion = false;
-    private static boolean isDivision = false;
 
     // en resultadoMemoriaRam. la primera posicion es el valor y la
     // segunda posicion es si tiene algun valor o no. ya que no se puede validar si esta
@@ -174,6 +155,6 @@ public class Operaciones {
 
     public static String operacionAnt;
     public static Object[] resultadoMemoriaRam = {0, false};
-    private static boolean salidoIgual = false;
+    public static boolean salidoIgual = false;
 
 }

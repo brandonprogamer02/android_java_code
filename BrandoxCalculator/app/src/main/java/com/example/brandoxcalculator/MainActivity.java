@@ -1,5 +1,6 @@
 package com.example.brandoxcalculator;
 // esto es good quality
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -21,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         pantalla = findViewById(R.id.pantalla);
         pantallaResultado = findViewById(R.id.pantallaResultado);
-        System.out.println("mere cabron");
     }
 
     public void onClickBoton1(View view) {
@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickBoton2(View view) {
         pintarTextoPantalla("2");
-
     }
 
     public void onClickBoton3(View view) {
@@ -74,6 +73,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void onClickBotonPi(View view) {
+        pintarTextoPantalla("3.1415");
+    }
+    public void onClickBotonE(View view) {
+        pintarTextoPantalla("2.7182");
+    }
+
     public void onClickBotonMas(View view) {
         // le mandamos el contexto por parametro
         validarClickOperacion("+", getApplicationContext());
@@ -92,12 +98,11 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        if (ultimo.equals("+") || ultimo.equals("-") || ultimo.equals("*") || ultimo.equals("/")  ){
+        if (ultimo.equals("+") || ultimo.equals("-") || ultimo.equals("*") || ultimo.equals("/")) {
             Toast.makeText(context, "DEBES PONER UNA CANTIDAD NUMERICA", Toast.LENGTH_SHORT).show();
             return;
         }
         pintarTextoPantalla(tipoOperacion);
-        Operaciones.setSelectedOperation(tipoOperacion);
         Operaciones.efectuarOperacion(tipoOperacion, context);
     }
 
@@ -187,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickBotonBorrar(View view) {
         // validamos que halla un caracter
-        if(textointroducido.length() == 0){
+        if (textointroducido.length() == 0) {
             return;
         }
         // validamos para que al pulsar borrar el texto sea un caracter numerico
@@ -213,27 +218,30 @@ public class MainActivity extends AppCompatActivity {
         pantallaResultado.setText("");
         textointroducido = "";
         Operaciones.operacionAnt = null;
-        Operaciones.resultadoMemoriaRam = new Object[]{0, false};
+        Operaciones.resultadoMemoriaRam[0] =  0;
+        Operaciones.resultadoMemoriaRam[1] = false;
+
+        Operaciones.salidoIgual = false;
     }
 
     public void onClickBotonIgual(View view) {
 
-        if(textointroducido.length() == 0){
+        if (textointroducido.length() == 0) {
             // validamos que halla algo
             Toast.makeText(this, "DEBES INTROUDCIR UNA EXPRESION OPERACIONAL", Toast.LENGTH_SHORT).show();
             return;
         }
-        char lastChar = textointroducido.charAt(textointroducido.length() -1);
+        char lastChar = textointroducido.charAt(textointroducido.length() - 1);
 
-        int totalOcurrencias = getPosOcurrencias(textointroducido,"+").size() + getPosOcurrencias(textointroducido,"-").size() +
-                getPosOcurrencias(textointroducido,"/").size() + getPosOcurrencias(textointroducido,"*").size();
+        int totalOcurrencias = getPosOcurrencias(textointroducido, "+").size() + getPosOcurrencias(textointroducido, "-").size() +
+                getPosOcurrencias(textointroducido, "/").size() + getPosOcurrencias(textointroducido, "*").size();
 
-        if(totalOcurrencias == 0){
+        if (totalOcurrencias == 0) {
             // validamos que halla signo
             Toast.makeText(this, "DEBES INTROUDCIR UNA EXPRESION OPERACIONAL", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(lastChar == '/' || lastChar == '-' ||lastChar == '+' ||lastChar == '*' ){
+        if (lastChar == '/' || lastChar == '-' || lastChar == '+' || lastChar == '*') {
             // validamos que la ultima no sea un simbolo de operacion
             Toast.makeText(this, "DEBES INTROUDCIR UNA EXPRESION OPERACIONAL", Toast.LENGTH_SHORT).show();
             return;
@@ -241,18 +249,6 @@ public class MainActivity extends AppCompatActivity {
 
         Operaciones.efectuarOperacion("=", getApplicationContext());
 
-    }
-
-    public void onClickBotonPi(View view) {
-        pintarTextoPantalla("3.1415");
-    }
-
-    public void onClickBotonE(View view) {
-        pintarTextoPantalla("2.7182");
-    }
-
-    public static TextView getPantalla() {
-        return pantalla;
     }
 
     public static TextView getPantallaResultado() {
