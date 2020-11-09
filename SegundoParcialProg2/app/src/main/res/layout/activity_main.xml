@@ -19,12 +19,13 @@
 
             <TextView
                 android:id="@+id/tituloprincipal"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="126dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="124dp"
                 android:layout_marginBottom="15dp"
+                android:textSize="20sp"
                 android:text="Real Quiz Programacion 2\n Luis Soto"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toTopOf="@+id/background1"
@@ -39,10 +40,11 @@
                 android:minHeight="100dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.204">
+                >
+
 
                 <TextView
                     android:id="@+id/titulo1"
@@ -50,14 +52,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="22dp"
                     android:layout_marginEnd="22dp"
-                    android:text="Selecciona el pais menos pobres de Latinoamerica"
+                    android:text="1. Selecciona el pais menos pobres de Latinoamerica"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toTopOf="@+id/radioGroup1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="1. Selecciona el pais menos pobres de Latinoamerica" />
+                    />
 
                 <RadioGroup
                     android:id="@+id/radioGroup1"
@@ -74,32 +76,34 @@
                     app:layout_constraintTop_toBottomOf="@+id/titulo1">
 
                     <RadioButton
+
                         android:id="@+id/unoa"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="unoa" />
+                        android:text="Uruguay" />
 
                     <RadioButton
                         android:id="@+id/unob"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="RadioButton" />
+                        android:text="Chile" />
 
                     <RadioButton
                         android:id="@+id/unoc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="RadioButton" />
+                        android:text="Brazil" />
 
                     <RadioButton
                         android:id="@+id/unod"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="RadioButton" />
+                        android:text="Argentina" />
 
                 </RadioGroup>
 
@@ -113,51 +117,52 @@
                 android:minHeight="100dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.454"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0">
+                >
 
                 <RadioGroup
                     android:id="@+id/radioGroup2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="137dp"
-                    android:layout_marginEnd="137dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginEnd="145dp"
+                    android:layout_marginBottom="1dp"
                     android:padding="2dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.666"
-                    app:layout_constraintStart_toStartOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/titulo2">
 
                     <RadioButton
                         android:id="@+id/dosa"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="unoa" />
+                        android:text="JQuery" />
 
                     <RadioButton
                         android:id="@+id/dosb"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="RadioButton" />
+                        android:text="React" />
 
                     <RadioButton
                         android:id="@+id/dosc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="RadioButton" />
+                        android:text="NodeJS" />
 
                     <RadioButton
                         android:id="@+id/dosd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="RadioButton" />
+                        android:text="Angular" />
                 </RadioGroup>
 
                 <TextView
@@ -166,14 +171,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Selecciona el pais menos pobres de Latinoamerica"
+                    android:text="2. Cual de estos es un framework/libreria creada por el equipo de facebook"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toTopOf="@+id/radioGroup2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="1. Selecciona el pais menos pobres de Latinoamerica" />
+                    app:layout_constraintTop_toTopOf="parent"/>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 <!--            =======================================================================================================================================================            -->
@@ -184,10 +189,23 @@
                 android:minHeight="100dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.454"
+
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0">
+                app:layout_constraintTop_toTopOf="parent">
+                <TextView
+                    android:id="@+id/titulo3"
+                    android:layout_width="367dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="3. Cual es el pais mas grande de America?"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@+id/radioGroup3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
 
                 <RadioGroup
                     android:id="@+id/radioGroup3"
@@ -199,52 +217,39 @@
                     android:padding="2dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.666"
-                    app:layout_constraintStart_toStartOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/titulo3">
 
                     <RadioButton
                         android:id="@+id/tresa"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="unoa" />
+                        android:text="Canada" />
 
                     <RadioButton
                         android:id="@+id/tresb"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="RadioButton" />
+                        android:text="Estados Unidos" />
 
                     <RadioButton
                         android:id="@+id/tresc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="RadioButton" />
+                        android:text="Argentina" />
 
                     <RadioButton
                         android:id="@+id/tresd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="RadioButton" />
+                        android:text="Republica Dominicana" />
                 </RadioGroup>
 
-                <TextView
-                    android:id="@+id/titulo3"
-                    android:layout_width="367dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="Selecciona el pais menos pobres de Latinoamerica"
-                    android:textAlignment="center"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toTopOf="@+id/radioGroup3"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="1. Selecciona el pais menos pobres de Latinoamerica" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 <!--            ==================================================================================================================================-->
@@ -255,7 +260,6 @@
                 android:minHeight="100dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.454"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0">
@@ -270,36 +274,36 @@
                     android:padding="2dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.666"
-                    app:layout_constraintStart_toStartOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/titulo4">
 
                     <RadioButton
                         android:id="@+id/cuatroa"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="unoa" />
+                        android:text="8x" />
 
                     <RadioButton
                         android:id="@+id/cuatrob"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="RadioButton" />
+                        android:text="4x" />
 
                     <RadioButton
                         android:id="@+id/cuatroc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="RadioButton" />
+                        android:text="-4x" />
 
                     <RadioButton
                         android:id="@+id/cuatrod"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="RadioButton" />
+                        android:text="10" />
                 </RadioGroup>
 
                 <TextView
@@ -308,20 +312,124 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Selecciona el pais menos pobres de Latinoamerica"
+                    android:text="4. Cual es la derivada de 4x^2 + 3000?"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toTopOf="@+id/radioGroup4"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="1. Selecciona el pais menos pobres de Latinoamerica" />
+                     />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 <!--            ===================================================================================================================================================-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/background5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
 
-        </LinearLayout>
-    </ScrollView>
+                <TextView
+                    android:id="@+id/titulo5"
+                    android:layout_width="367dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginEnd="22dp"
+                    android:text="5. Cual es el resultado de la operacion 5 * 3 -11"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@+id/radioGroup5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="5. " />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <RadioGroup
+                    android:id="@+id/radioGroup5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="137dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginEnd="145dp"
+                    android:layout_marginBottom="1dp"
+                    android:padding="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/titulo5">
+
+                    <RadioButton
+                        android:id="@+id/cincoa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:text="4" />
+
+                    <RadioButton
+                        android:id="@+id/cincob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:text="11" />
+
+                    <RadioButton
+                        android:id="@+id/cincoc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:text="5" />
+
+                    <RadioButton
+                        android:id="@+id/cincod"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:text="-5" />
+
+                </RadioGroup>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+<!--=========================================================================================================-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_height="100dp"
+                android:layout_width="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/verResultado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ver resultado"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/resultado">
+
+                    </androidx.appcompat.widget.AppCompatButton>
+                    <TextView
+                        android:id="@+id/resultado"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tu Resultado fue de:"
+                        android:textAlignment="center"
+                        android:paddingBottom="10dp"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/verResultado"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                    </TextView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </LinearLayout>
+                </ScrollView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
