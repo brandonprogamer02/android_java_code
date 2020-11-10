@@ -16,7 +16,6 @@
             android:orientation="vertical">
 
 
-
             <TextView
                 android:id="@+id/tituloprincipal"
                 android:layout_width="wrap_content"
@@ -25,9 +24,11 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="124dp"
                 android:layout_marginBottom="15dp"
-                android:textSize="20sp"
                 android:text="Real Quiz Programacion 2\n Luis Soto"
                 android:textAlignment="center"
+                android:textColor="#388993"
+                android:textSize="20sp"
+                android:textStyle="bold|italic"
                 app:layout_constraintBottom_toTopOf="@+id/background1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -42,8 +43,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
 
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                >
+                app:layout_constraintTop_toTopOf="parent">
 
 
                 <TextView
@@ -54,12 +54,13 @@
                     android:layout_marginEnd="22dp"
                     android:text="1. Selecciona el pais menos pobres de Latinoamerica"
                     android:textAlignment="center"
+                    android:textColor="#3F51B5"
                     android:textSize="18sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/radioGroup1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <RadioGroup
                     android:id="@+id/radioGroup1"
@@ -105,10 +106,23 @@
                         android:layout_margin="4dp"
                         android:text="Argentina" />
 
+                    <TextView
+                        android:id="@+id/respuesta1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="LA RESPUESTA CORRECTA ES: Uruguay"
+                        android:textColor="#08630B"
+                        android:textStyle="italic"
+                        android:visibility="gone">
+
+                    </TextView>
+
+
                 </RadioGroup>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-<!--    ==============================================================================================================================================        -->
+            <!--    ==============================================================================================================================================        -->
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/background2"
@@ -119,8 +133,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
 
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                >
+                app:layout_constraintTop_toTopOf="parent">
 
                 <RadioGroup
                     android:id="@+id/radioGroup2"
@@ -163,6 +176,18 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
                         android:text="Angular" />
+
+                    <TextView
+                        android:id="@+id/respuesta2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="LA RESPUESTA CORRECTA ES: React"
+                        android:visibility="gone"
+                        android:textColor="#08630B"
+                        android:textStyle="italic">
+
+                    </TextView>
                 </RadioGroup>
 
                 <TextView
@@ -173,15 +198,17 @@
                     android:layout_marginBottom="8dp"
                     android:text="2. Cual de estos es un framework/libreria creada por el equipo de facebook"
                     android:textAlignment="center"
+                    android:textColor="#3F51B5"
                     android:textSize="18sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/radioGroup2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-<!--            =======================================================================================================================================================            -->
+            <!--            =======================================================================================================================================================            -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/background3"
                 android:layout_width="match_parent"
@@ -192,6 +219,7 @@
 
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
                 <TextView
                     android:id="@+id/titulo3"
                     android:layout_width="367dp"
@@ -200,12 +228,13 @@
                     android:layout_marginBottom="8dp"
                     android:text="3. Cual es el pais mas grande de America?"
                     android:textAlignment="center"
+                    android:textColor="#3F51B5"
                     android:textSize="18sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/radioGroup3"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <RadioGroup
                     android:id="@+id/radioGroup3"
@@ -247,12 +276,23 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
                         android:text="Republica Dominicana" />
+
+                    <TextView
+                        android:id="@+id/respuesta3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="LA RESPUESTA CORRECTA ES: Canada"
+                        android:visibility="gone"
+                        android:textColor="#08630B"
+                        android:textStyle="italic">
+
+                    </TextView>
                 </RadioGroup>
 
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-<!--            ==================================================================================================================================-->
+            <!--            ==================================================================================================================================-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/background4"
                 android:layout_width="match_parent"
@@ -304,6 +344,18 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
                         android:text="10" />
+
+                    <TextView
+                        android:id="@+id/respuesta4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="LA RESPUESTA CORRECTA ES: 8x"
+                        android:visibility="gone"
+                        android:textColor="#08630B"
+                        android:textStyle="italic">
+
+                    </TextView>
                 </RadioGroup>
 
                 <TextView
@@ -314,15 +366,16 @@
                     android:layout_marginBottom="8dp"
                     android:text="4. Cual es la derivada de 4x^2 + 3000?"
                     android:textAlignment="center"
+                    android:textColor="#3F51B5"
                     android:textSize="18sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/radioGroup4"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                     />
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-<!--            ===================================================================================================================================================-->
+            <!--            ===================================================================================================================================================-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/background5"
                 android:layout_width="match_parent"
@@ -342,7 +395,9 @@
                     android:layout_marginEnd="22dp"
                     android:text="5. Cual es el resultado de la operacion 5 * 3 -11"
                     android:textAlignment="center"
+                    android:textColor="#3F51B5"
                     android:textSize="18sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/radioGroup5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -391,45 +446,76 @@
                         android:layout_margin="4dp"
                         android:text="-5" />
 
-                </RadioGroup>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-<!--=========================================================================================================-->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_height="100dp"
-                android:layout_width="match_parent">
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/verResultado"
+                    <TextView
+                        android:id="@+id/respuesta5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ver resultado"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/resultado">
-
-                    </androidx.appcompat.widget.AppCompatButton>
-                    <TextView
-                        android:id="@+id/resultado"
-                        android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Tu Resultado fue de:"
-                        android:textAlignment="center"
-                        android:paddingBottom="10dp"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/verResultado"
-                        app:layout_constraintBottom_toBottomOf="parent">
+                        android:layout_marginTop="16dp"
+                        android:text="LA RESPUESTA CORRECTA ES: 4"
+                        android:visibility="gone"
+                        android:textColor="#08630B"
+                        android:textStyle="italic">
 
                     </TextView>
 
+                </RadioGroup>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--=========================================================================================================-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/salir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Salir"
+                    android:layout_marginLeft="50dp"
+                    app:layout_constraintBottom_toTopOf="@+id/resultado"
+                    app:layout_constraintLeft_toLeftOf="@+id/verResultado"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                </androidx.appcompat.widget.AppCompatButton>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/verResultado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ver resultado"
+                    app:layout_constraintBottom_toTopOf="@+id/resultado"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginLeft="-30dp">
+
+
+
+                </androidx.appcompat.widget.AppCompatButton>
+
+                <TextView
+                    android:id="@+id/resultado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:text="Tu Resultado fue de:"
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/verResultado">
+
+                </TextView>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-                    </LinearLayout>
-                </ScrollView>
+        </LinearLayout>
+    </ScrollView>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
